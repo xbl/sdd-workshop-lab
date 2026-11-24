@@ -1,4 +1,6 @@
-# SDD 实操 · 限额活动报名
+# SDD 课堂练习库
+
+## 当前练习 · 限额活动报名
 
 > 给培训活动页加一个报名功能。活动有名额限制，报名成功后发给用户一份凭证，报名失败时给出明确提示。
 
@@ -9,8 +11,8 @@
 在终端进入存放练习项目的目录，执行：
 
 ```sh
-git clone https://github.com/xbl/sdd-registration-lab.git
-cd sdd-registration-lab
+git clone https://github.com/xbl/sdd-workshop-lab.git
+cd sdd-workshop-lab
 ```
 
 从这个目录打开 Claude Code（`claude`）或 Codex（`codex`，也可以用 Codex 桌面应用打开此文件夹）。Spec Kit 1.4.4 的项目命令、模板、脚本和项目原则已经随仓库配置，克隆后就可以使用，省去安装 Specify CLI 和运行 `specify init` 的步骤。
