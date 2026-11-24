@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>培训活动报名练习</title>
+  <style>
+    :root { color-scheme: light; background: #f6f4ee; color: #172b2d; font: 17px/1.6 "Atkinson Hyperlegible Next", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    * { box-sizing: border-box; }
+    main { max-width: 920px; margin: 0 auto; padding: clamp(32px, 7vw, 96px) 24px 56px; }
+    h1 { margin: 0; line-height: 1.1; font-size: clamp(32px, 5vw, 58px); }
+    p { color: #445853; }
+    fieldset { margin: 30px 0; padding: 0 0 18px; border: 0; border-bottom: 2px solid #172b2d; }
+    legend { margin-bottom: 8px; font-weight: 700; }
+    label, button { display: inline-block; margin: 4px 8px 4px 0; }
+    article { padding: 17px 0; border-bottom: 1px solid #b9c6bf; }
+    h2 { margin: 0; font-size: 20px; }
+    button, select { font: inherit; padding: 7px 12px; }
+    button { background: #165950; color: white; border: 1px solid #165950; cursor: pointer; }
+    button:hover { background: #10443d; }
+    button:focus-visible, select:focus-visible { outline: 3px solid #ad5d28; outline-offset: 3px; }
+    output { display: inline; color: #165950; font-weight: 700; }
+    .clients { display: grid; gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 600px) { .clients { grid-template-columns: 1fr; } }
+  </style>
+  <script src="registration.js" defer></script>
+  <script src="page.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>培训活动报名练习</h1>
+    <p>两个页面视图共用一个活动。每个视图保留自己上次看到的剩余名额。</p>
+    <fieldset>
+      <legend>活动设置</legend>
+      <label for="time">模拟提交时间</label>
+      <select id="time">
+        <option value="31">活动开始前 31 分钟</option>
+        <option value="30">活动开始前 30 分钟</option>
+        <option value="29">活动开始前 29 分钟</option>
+        <option value="0">活动开始时</option>
+      </select>
+      <button id="reset" type="button">重置为 1 个名额</button>
+    </fieldset>
+    <div class="clients">
+      <article data-user="A" aria-labelledby="client-a">
+        <h2 id="client-a">学员甲的页面</h2>
+        <p>页面显示剩余 <strong class="remaining">1</strong> 个名额</p>
+        <button type="button" aria-label="学员甲提交报名">提交报名</button>
+        <p><output class="receipt"></output></p>
+      </article>
+      <article data-user="B" aria-labelledby="client-b">
+        <h2 id="client-b">学员乙的页面</h2>
+        <p>页面显示剩余 <strong class="remaining">1</strong> 个名额</p>
+        <button type="button" aria-label="学员乙提交报名">提交报名</button>
+        <p><output class="receipt"></output></p>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
