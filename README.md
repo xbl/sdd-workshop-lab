@@ -7,18 +7,23 @@
 ## 练习说明
 
 1. **第一阶段 · 直推盲区体验**：直接把上述需求发给常用的 AI 工具（无需克隆代码），观察 AI 是否一口气全写完并遗漏了所有异常和边界。
-2. **第二阶段 · 进入 SDD 规范澄清**：进入本项目目录，使用 Spec Kit 体验框架的主动提问与规范驱动开发。
+2. **第二阶段 · 进入 SDD 规范澄清**：将本项目 Fork 到个人 GitHub 账号并克隆到本地，使用 Spec Kit 体验框架的主动提问与规范驱动开发。
 
-## 克隆与打开练习库
+## Fork 与克隆练习库
 
-需要 Git、Bash、Node.js 20 或更新版本，以及能正常使用的 Claude Code 或 Codex。macOS 和 Linux 可以在终端操作。Windows 请在 Git Bash 或 WSL 中运行，并从同一环境进入项目。
+为了让每位学员在后续的 Harness 工程环节能够练习让 AI Skill 自动化处理真实缺陷，请**先将本仓库 Fork 到您的个人 GitHub 账号，再克隆您自己的仓库**：
 
-在终端进入存放练习项目的目录，执行：
+1. 在浏览器打开练习仓库 [https://github.com/xbl/sdd-workshop-lab](https://github.com/xbl/sdd-workshop-lab)，点击右上角的 **Fork** 按钮，创建到您个人的 GitHub 命名空间下；
+2. 在本地终端进入存放练习项目的目录，克隆**您自己的 Fork 仓库**：
 
 ```sh
-git clone https://github.com/xbl/sdd-workshop-lab.git
+git clone https://github.com/<你的 GitHub 用户名>/sdd-workshop-lab.git
 cd sdd-workshop-lab
 ```
+
+> **后续联动说明**：后续当您在实操中发现 Bug 或进行报障演练时，可以直接在您的个人仓库中创建 **GitHub Issue**，并练习编写与调用 Bug 修复 Skill（实现让 AI 读取 Issue 目标、编写复现测试见红、自动化修复转绿、验证并闭环 Issue）。
+
+需要 Git、Bash、Node.js 20 或更新版本，以及能正常使用的 Claude Code 或 Codex。macOS 和 Linux 可以在终端操作。Windows 请在 Git Bash 或 WSL 中运行，并从同一环境进入项目。
 
 从这个目录打开 Claude Code（`claude`）或 Codex（`codex`，也可以用 Codex 桌面应用打开此文件夹）。Spec Kit 1.4.4 的项目命令、模板、脚本和项目原则已经随仓库配置，克隆后就可以使用，省去安装 Specify CLI 和运行 `specify init` 的步骤。
 
