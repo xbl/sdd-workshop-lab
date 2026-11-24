@@ -6,10 +6,10 @@
 
 需要 Git、Bash、Node.js 20 或更新版本，以及能正常使用的 Claude Code 或 Codex。macOS 和 Linux 可以在终端操作。Windows 请在 Git Bash 或 WSL 中运行，并从同一环境进入项目。
 
-在终端切换到 `sdd-registration-lab.bundle` 所在目录，执行：
+在终端进入存放练习项目的目录，执行：
 
 ```sh
-git clone sdd-registration-lab.bundle sdd-registration-lab
+git clone https://github.com/xbl/sdd-registration-lab.git
 cd sdd-registration-lab
 ```
 
