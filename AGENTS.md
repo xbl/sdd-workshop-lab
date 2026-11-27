@@ -1,19 +1,14 @@
-# 项目指令与架构红线
+# 项目指令与工程约定
 
 本项目为《AI 增强的敏捷交付与 DevOps》课程中的 SDD 实操练习库。
 
-## 架构红线（严禁违反）
+## 架构与实现自由度
 
-1. **绝对禁止数据库**：严禁创建、安装、配置或建议使用 SQLite、MySQL、PostgreSQL、IndexedDB、Redis 等任何真实数据库。
-2. **绝对禁止后端服务与外部依赖**：严禁引入 Express、Fastify、Next.js、Node HTTP 服务等任何后端框架；严禁安装任何 npm 依赖包（项目必须保持 0 第三方依赖）。
-3. **模拟数据库契约**：
-   - 唯一的“数据库”即为输入参数 `state`（纯内存 JavaScript 对象）：
-     - `state.capacity`: 名额上限（数字）
-     - `state.startsAt`: 活动开始时间戳（毫秒数）
-     - `state.registrations`: 报名记录列表 `Array<{ userId: string, registrationId: string }>`
-   - 唯一的修改文件为 `registration.js`，严格保持纯函数契约：
-     `function register(state, { userId, now }) -> { state, receipt }`
-   - 查询、去重、满员判断与写入全部通过对 `state` 内存对象的纯逻辑操作完成。
-4. **运行与验证**：
-   - 浏览器运行：直接双击 `index.html` 打开，开箱即用；
-   - 自动化测试：仅使用 Node.js 原生测试工具：`node --test`。
+1. **技术方案不设硬性限制**：
+   - **轻量纯前端方案（默认起点）**：可直接沿用 `index.html`、`page.js` 与 `registration.js` 的纯内存 `state` 结构（默认含 `capacity`、`closed`、`registrations`，可按 `spec.md` 自由扩展），零额外服务即可双击 `index.html` 运行，并用 `node --test` 验证纯函数逻辑。
+   - **前后端 / 服务端方案（可选）**：若选择引入后端服务（如 Node.js 原生 HTTP、Express 或其他框架与存储方式），请同步维护启动方式、接口契约与清空服务端状态/内存的逻辑，让 `index.html` 调试配置区与活动报名表单真实对接后端 API（可同时打开多个浏览器窗口验证多用户并发或过期页面争抢）。
+2. **以已确认的 `spec.md` 为唯一事实来源**：
+   - 具体业务行为（名额校验、重复提交、空姓名处理、截止后按钮是否 `disabled`、是否允许已有报名者重试、清空报名与重新开启的行为等）严格以 `spec.md` 中澄清确认的规则为准，未经确认不得自行脑补规则。
+3. **可修改与验证范围**：
+   - 可按 `spec.md` 与 `plan.md` 自由组织并修改代码（包括 `registration.js`、`page.js`、`index.html` 或新增服务端目录、依赖配置与 `test/` 自动化测试）；
+   - 必须保留可重复执行的自动化测试（如 `node --test` 或项目对应的测试命令），并确保 `index.html` 调试配置区（「设置名额」「截止报名」「重新开启报名」「清空报名」）与活动报名提交均真实可用。

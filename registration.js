@@ -1,12 +1,8 @@
-// 【架构红线与模拟数据库契约】
-// 1. 本项目严禁引入 SQLite、MySQL 等任何真实数据库，严禁引入后端服务或外部 npm 依赖。
-// 2. 本函数的 state 对象即为“模拟数据库”，所有状态读取与写入均基于此对象：
-//    - state 包含: { capacity: number, startsAt: number, registrations: Array<{ userId: string, registrationId: string }> }
-//    - 返回结构: { state: nextState, receipt: { code: string, registrationId?: string } }
-//    - receipt.code 可选值: 'registered' | 'full' | 'closed' | 'not_implemented'
-// 3. 失败或拒绝时返回原 state（未改变）；成功时返回浅拷贝并追加新记录的新 state。
-function register(state, { userId, now }) {
-  // 在 Spec 评审完成后，实现本函数。先用测试观察这段占位逻辑的行为。
+// 默认的纯内存占位实现（保证克隆后直接打开 index.html 可运行、不报错）。
+// - 若采用纯前端/纯内存方案：可直接在 register(state, { userId }) 中实现核心规则，并保持纯函数导出以便 node --test 测试。
+// - 若采用前后端方案：可在服务端（如 Node.js HTTP 服务）复用本模块，或改为由 page.js 通过接口调用后端服务。
+function register(state, { userId }) {
+  // 在 Spec 评审完成后，按已确认规则实现报名逻辑。
   return { state, receipt: { code: 'not_implemented' } };
 }
 

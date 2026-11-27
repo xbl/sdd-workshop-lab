@@ -1,42 +1,57 @@
-const start = Date.UTC(2026, 10, 15, 8, 0);
-const minute = 60_000;
-const timeSelect = document.querySelector('#time');
-const messages = {
-  full: '报名已满。',
-  closed: '报名已截止。',
-  not_implemented: '报名功能待实现。',
-};
-
 let state = newActivity();
-const clients = [...document.querySelectorAll('[data-user]')];
+const remainingEl = document.querySelector('#remaining');
+const userInput = document.querySelector('#user-input');
+const receiptEl = document.querySelector('#receipt');
+const capacityInput = document.querySelector('#capacity-input');
+const configFeedback = document.querySelector('#config-feedback');
 
 function newActivity() {
-  return { capacity: 1, startsAt: start, registrations: [] };
+  return { capacity: 1, closed: false, registrations: [] };
 }
 
-function showRemaining(client) {
-  client.querySelector('.remaining').textContent = state.capacity - state.registrations.length;
+function renderRemaining() {
+  remainingEl.textContent = state.capacity - state.registrations.length;
 }
 
-for (const client of clients) {
-  client.querySelector('button').addEventListener('click', () => {
-    const now = start - Number(timeSelect.value) * minute;
-    const result = register(state, { userId: client.dataset.user, now });
-    state = result.state;
-    // 只刷新刚提交的页面，另一张页面仍持有旧名额。
-    showRemaining(client);
-    const receipt = result.receipt;
-    client.querySelector('.receipt').textContent = receipt.code === 'registered'
-      ? '报名成功，凭证 ' + receipt.registrationId
-      : messages[receipt.code];
-  });
-}
-
-document.querySelector('#reset').addEventListener('click', () => {
-  state = newActivity();
-  timeSelect.value = '31';
-  for (const client of clients) {
-    showRemaining(client);
-    client.querySelector('.receipt').textContent = '';
+function formatReceipt(receipt) {
+  if (!receipt || !receipt.code || receipt.code === 'not_implemented') {
+    return '报名功能待实现。';
   }
+  if (receipt.code === 'registered') {
+    return receipt.registrationId
+      ? '报名成功，凭证 ' + receipt.registrationId
+      : '报名成功。';
+  }
+  return receipt.message || receipt.code;
+}
+
+renderRemaining();
+
+document.querySelector('#submit-registration').addEventListener('click', () => {
+  const userId = userInput.value.trim();
+  const result = register(state, { userId });
+  state = result.state;
+  renderRemaining();
+  receiptEl.textContent = formatReceipt(result.receipt);
+});
+
+document.querySelector('#set-capacity').addEventListener('click', () => {
+  // 在 Spec 评审完成后，读取 capacityInput.value 并实现名额限制与配置逻辑。
+  void capacityInput;
+  configFeedback.textContent = '设置名额功能待实现。';
+});
+
+document.querySelector('#close-registration').addEventListener('click', () => {
+  // 在 Spec 评审完成后，按已确认规则实现截止报名逻辑与界面交互（例如是否禁用提交或提示已截止）。
+  configFeedback.textContent = '截止报名功能待实现。';
+});
+
+document.querySelector('#reopen-registration').addEventListener('click', () => {
+  // 在 Spec 评审完成后，按已确认规则实现重新开启报名逻辑与界面交互。
+  configFeedback.textContent = '重新开启报名功能待实现。';
+});
+
+document.querySelector('#clear-registrations').addEventListener('click', () => {
+  // 在 Spec 评审完成后，由学员实现清空报名记录与重置页面状态逻辑。
+  configFeedback.textContent = '清空报名功能待实现。';
 });
