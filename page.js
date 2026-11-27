@@ -36,22 +36,22 @@ document.querySelector('#submit-registration').addEventListener('click', () => {
 });
 
 document.querySelector('#set-capacity').addEventListener('click', () => {
-  // 在 Spec 评审完成后，读取 capacityInput.value 并实现名额限制与配置逻辑。
+  // 待实现：读取 capacityInput.value 并完成名额限制与配置逻辑。
   void capacityInput;
   configFeedback.textContent = '设置名额功能待实现。';
 });
 
 document.querySelector('#close-registration').addEventListener('click', () => {
-  // 在 Spec 评审完成后，按已确认规则实现截止报名逻辑与界面交互（例如是否禁用提交或提示已截止）。
+  // 待实现：完成截止报名逻辑与界面交互（例如是否禁用提交或提示已截止）。
   configFeedback.textContent = '截止报名功能待实现。';
 });
 
 document.querySelector('#reopen-registration').addEventListener('click', () => {
-  // 在 Spec 评审完成后，按已确认规则实现重新开启报名逻辑与界面交互。
+  // 待实现：完成重新开启报名逻辑与界面交互。
   configFeedback.textContent = '重新开启报名功能待实现。';
 });
 
 document.querySelector('#clear-registrations').addEventListener('click', () => {
-  // 在 Spec 评审完成后，由学员实现清空报名记录与重置页面状态逻辑。
+  // 待实现：完成清空报名记录与重置页面状态逻辑。
   configFeedback.textContent = '清空报名功能待实现。';
 });
